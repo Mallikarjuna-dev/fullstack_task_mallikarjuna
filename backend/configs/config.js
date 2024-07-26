@@ -5,15 +5,19 @@ const redisClient = redis.createClient({
     url: "redis://default:dssYpBnYQrl01GbCGVhVq2e4dYvUrKJB@redis-12675.c212.ap-south-1-1.ec2.cloud.redislabs.com:12675"
 });
 
-redisClient.on("error", (err) => console.log("Redis client error", err));
+redisClient.on('connect', () => {
+    console.log('Redis client connected');
+});
 
-(async () => {
-    await redisClient.connect();
-})();
+redisClient.on('error', (err) => {
+    console.log('Redis client error:', err);
+});
 
-mongoose.connect("mongodb+srv://assignment_user:HCgEj5zv8Hxwa4xO@test-cluster.6f94f5o.mongodb.net/assignment");
+redisClient.connect();
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-module.exports = { redisClient, db };
+mongoose.connect("mongodb+srv://assignment_user:HCgEj5zv8Hxwa4xO@test-cluster.6f94f5o.mongodb.net/assignment")
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.log('MongoDB connection error:', err));
+
+module.exports = { redisClient, mongoose };
