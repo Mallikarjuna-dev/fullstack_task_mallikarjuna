@@ -12,7 +12,7 @@ const TaskList = () => {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const res = await axios.get('https://kazam-ev-task.onrender.com/api/fetchAllTasks');
+                const res = await axios.get('https://kazam-ev-task.onrender.com/fetchAllTasks');
                 setTasks(res.data);
             } catch (error) {
                 console.error('Error fetching tasks:', error);
@@ -21,6 +21,7 @@ const TaskList = () => {
         fetchTasks();
 
         socket.on('taskAdded', (task) => {
+        console.log(task)
             setTasks((prevTasks) => [...prevTasks, task]);
         });
         return () => {

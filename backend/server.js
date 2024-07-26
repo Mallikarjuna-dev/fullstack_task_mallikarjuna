@@ -17,10 +17,6 @@ app.use('/api', taskRoutes);
 
 const server = http.createServer(app);
 
-// const allowedOrigins = [
-//     'http://localhost:3000',
-// ];
-
 const io = new Server(server, {
     cors: {
         origin: "*",
