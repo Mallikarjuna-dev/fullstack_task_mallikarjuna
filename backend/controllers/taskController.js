@@ -1,5 +1,5 @@
 const redisClient = require("../configs/config");
-const Task = require("../models/taskModel");
+const Task = require("../models/Task");
 
 const TASK_KEY = "FULLSTACK_TASK_MALLIKARJUNA";
 

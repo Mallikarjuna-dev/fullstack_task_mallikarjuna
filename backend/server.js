@@ -7,7 +7,7 @@ const { Server } = require("socket.io");
 // const { addTask } = require("./controllers/taskController");
 const taskRoutes = require("./routes/taskRoutes");
 const { redisClient } = require("./configs/config");
-const Task = require("./models/taskModel");
+const Task = require("./models/Task");
 
 require("dotenv").config();
 
