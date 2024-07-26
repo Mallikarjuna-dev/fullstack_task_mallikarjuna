@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const http = require("http");
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 const { Server } = require("socket.io");
 // const { addTask } = require("./controllers/taskController");
 const taskRoutes = require("./routes/taskRoutes");
@@ -12,7 +12,7 @@ const Task = require("./models/Task");
 require("dotenv").config();
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
 // app.use('/api', taskRoutes);
 
