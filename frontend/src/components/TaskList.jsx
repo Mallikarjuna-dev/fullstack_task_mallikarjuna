@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import Task from './Task';
 
-const socket = io('http://localhost:8080');
+const socket = io('https://kazam-ev-task.onrender.com');
 
 const TaskList = () => {
     const [tasks, setTasks] = useState([]);
@@ -12,7 +12,7 @@ const TaskList = () => {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const res = await axios.get('http://localhost:8080/api/fetchAllTasks');
+                const res = await axios.get('https://kazam-ev-task.onrender.com/api/fetchAllTasks');
                 setTasks(res.data);
             } catch (error) {
                 console.error('Error fetching tasks:', error);
