@@ -2,19 +2,16 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const http = require("http");
-// const bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const { Server } = require("socket.io");
 // const { addTask } = require("./controllers/taskController");
-const taskRoutes = require("./routes/taskRoutes");
+// const taskRoutes = require("./routes/taskRoutes");
 const { redisClient } = require("./configs/config");
 const Task = require("./models/Task");
 
-require("dotenv").config();
-
 app.use(cors());
-app.use(express.json());
 
-// app.use('/api', taskRoutes);
+app.use(bodyParser.json());
 
 const server = http.createServer(app);
 
@@ -55,7 +52,11 @@ async function moveTasksToMongoDB() {
     }
 }
 
-app.get('/fetchAllTasks', (req, res) => {
+// app.get('/fetchAllTasks', (req, res) => {
+//     res.json(tasks);
+// });
+
+app.get("/fetchAllTasks", (req, res) => {
     res.json(tasks);
 });
 
@@ -77,6 +78,6 @@ io.on('connection', (socket) => {
 
 const PORT = process.env.PORT || 8080;
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
