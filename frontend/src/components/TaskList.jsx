@@ -13,26 +13,6 @@ const TaskList = () => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null);
 
-    // useEffect(() => {
-    //     const fetchTasks = async () => {
-    //         try {
-    //             const response = await axios.get('http://localhost:8080/fetchAllTasks');
-    //             setTasks(response.data);
-    //         } catch (error) {
-    //             console.error('Error fetching tasks:', error);
-    //         }
-    //     };
-    //     fetchTasks();
-
-    //     socket.on('taskAdded', (task) => {
-    //         console.log(task)
-    //         setTasks((prevTasks) => [...prevTasks, task]);
-    //     });
-    //     return () => {
-    //         socket.off('taskAdded');
-    //     };
-    // }, []);
-
     useEffect(() => {
         axios.get('https://kazam-ev-task.onrender.com/fetchAllTasks')
             .then((response) => {
